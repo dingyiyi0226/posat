@@ -8,9 +8,6 @@ def serialize(block):
 def deserialize(data):
     return pickle.loads(data)
 
-def hash(content):
-    return content
-
 def sign(content, key):
     obj = {
         'content': content,
@@ -29,3 +26,9 @@ def sum256_hex(*args):
     for arg in args:
         m.update(arg)
     return m.hexdigest()
+
+def hash(output, slot):
+    return output + slot
+
+def threshold(s):
+    return s*0.1

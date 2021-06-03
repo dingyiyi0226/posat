@@ -5,6 +5,7 @@ Block structure
 
     content:
     {
+        'tx':
         'coin':
         'input':
         'rand_source':
@@ -21,13 +22,16 @@ Block structure
 
 import utils
 
+from coin import Coin
+
+
 default_content = {
     'tx': [],
-    'coin': '',
-    'input': '',
-    'rand_source': '',
-    'proof': '',
-    'rand_iter': '',
+    'coin': Coin(),
+    'input': 0,
+    'rand_source': 0,
+    'proof': 'genesis',
+    'rand_iter': 0,
     'slot': 0,
     'state': ''
 }
@@ -99,7 +103,7 @@ class Block():
         return self._hash
 
     def is_unspent(self):
-        return self._content['coin'] > 0
+        return self._content['coin'].value > 0
 
     def _get_hash(self):
         block_string = [
