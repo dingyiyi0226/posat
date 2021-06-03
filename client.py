@@ -12,7 +12,7 @@ db_file = 'blockchain.db'
 block_bucket = 'blocks'
 tx_bucket = 'txs'
 
-class Posat():
+class Client():
 
     def __init__(self):
 
@@ -151,7 +151,7 @@ class Posat():
 
 
 if __name__ == '__main__':
-    client = Posat()
+    client = Client()
     coin = Coin()
 
     client.send_tx('ell')
