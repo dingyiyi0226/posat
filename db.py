@@ -38,6 +38,11 @@ class DB(metaclass=Singleton):
     def reset(self, bucket):
         self.kv[bucket] = {}
 
+    def refresh(self):
+        with open(self._db_file, 'rb') as f:
+            self.kv = pickle.load(f)
+
+
 class Bucket():
 
     def __init__(self, db_file, bucket):
@@ -62,6 +67,9 @@ class Bucket():
 
     def commit(self):
         self._db.commit()
+
+    def refresh(self):
+        self._db.refresh()
 
     @property
     def kv(self):

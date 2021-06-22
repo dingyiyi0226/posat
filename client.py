@@ -37,6 +37,7 @@ class Client():
         pass
 
     def receive_tx(self):
+        self._tx_bucket.refresh()
         txs = self._tx_bucket.get()
         if txs:
             print(txs)
@@ -46,11 +47,15 @@ class Client():
                 self.un_cnf_tx.append(tx)
         else:
             print('No txs')
+            self.un_cnf_tx.clear()
 
     def _is_valid_tx(self, tx):
         return type(tx) == str
 
     def receive_block(self):
+        self._block_bucket.refresh()
+
+        self.receive_tx()
 
         block_hash = self._block_bucket.get(latest)
         block = utils.deserialize(self._block_bucket.get(block_hash))
@@ -61,7 +66,7 @@ class Client():
             return
 
         parent_blk = utils.deserialize(self._block_bucket.get(self.parent_blk))
-        print('parent_blk', parent_blk)
+        # print('parent_blk', parent_blk)
         if parent_blk.level < block.level:
             self._change_main_chain(block)
             if block.level % c == 0:
