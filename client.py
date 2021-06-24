@@ -142,7 +142,6 @@ class Client():
         self._tx_bucket.commit()
 
     def print_all_block(self):
-        print('Blockchain:')
 
         blockchain = []
         tip = self.parent_blk
@@ -151,6 +150,8 @@ class Client():
             blockchain.append(block)
             tip = block.parent_blk
 
+        print(f'Blockchain height: {len(blockchain)}')
+        print('Blockchain:')
         for block in blockchain[::-1]:
             print(block)
 

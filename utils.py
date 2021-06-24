@@ -9,11 +9,8 @@ def deserialize(data):
     return pickle.loads(data)
 
 def sign(content, key):
-    obj = {
-        'content': content,
-        'key': key
-    }
-    return obj
+    sign_str = ''.join([str(i) for i in content.values()])
+    return sum256_hex(encode(sign_str))
 
 def encode(str, code='utf-8'):
     return str.encode(code)
