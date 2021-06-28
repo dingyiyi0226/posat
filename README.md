@@ -3,8 +3,7 @@ A simple implementation of posat
 
 ## Usage
 
-open the client shell and run the commands.
-
+open the client by running  `posat.py`
 ```
 python posat.py
 ```
