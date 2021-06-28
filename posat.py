@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from coin import Coin
 from client import Client
 

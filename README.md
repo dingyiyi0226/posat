@@ -3,10 +3,10 @@ A simple implementation of posat
 
 ## Usage
 
-open the client shell by `./posat`, and run the commands.
+open the client shell and run the commands.
 
 ```
-./posat
+python posat.py
 ```
 
 and you will see the interactive shell
